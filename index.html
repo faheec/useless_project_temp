@@ -1683,17 +1683,74 @@
       z-index: 5;
     }
 
-    .hen-perch::before {
-      content: "";
+    .spear-perch {
       position: absolute;
-      top: 110px;
+      top: 104px;
       left: 50%;
       transform: translateX(-50%);
-      width: 140px;
-      height: 7px;
-      background: linear-gradient(90deg, #78350f, #b45309, #78350f);
-      border-radius: 4px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      width: 170px;
+      height: 24px;
+      pointer-events: none;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
+    }
+
+    /* Wind speed streaks trailing behind the spear perch */
+    .spear-wind-streaks {
+      position: absolute;
+      top: 104px;
+      left: -28px;
+      width: 52px;
+      height: 18px;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      opacity: 0.85;
+      z-index: 2;
+    }
+
+    .spear-wind-streaks span {
+      display: block;
+      height: 2.2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.6) 60%, #ffffff 100%);
+      border-radius: 2px;
+      animation: windStreak 0.28s ease-in-out infinite alternate;
+    }
+
+    .spear-wind-streaks span:nth-child(1) { width: 38px; animation-delay: 0.04s; }
+    .spear-wind-streaks span:nth-child(2) { width: 50px; animation-delay: 0.14s; }
+    .spear-wind-streaks span:nth-child(3) { width: 28px; animation-delay: 0.08s; }
+
+    @keyframes windStreak {
+      0% { transform: translateX(0) scaleX(0.7); opacity: 0.4; }
+      100% { transform: translateX(-18px) scaleX(1.25); opacity: 0.95; }
+    }
+
+    .hen-perch.squat .spear-wind-streaks span {
+      background: linear-gradient(90deg, transparent 0%, rgba(245, 158, 11, 0.8) 50%, #fbbf24 100%);
+      transform: translateX(-26px) scaleX(1.5);
+    }
+
+    /* Dynamic Wind Gust Particles while hen moves & drops */
+    .wind-gust {
+      position: absolute;
+      font-size: 20px;
+      pointer-events: none;
+      z-index: 6;
+      opacity: 0.9;
+      animation: windBlow 0.6s ease-out forwards;
+      filter: drop-shadow(0 2px 6px rgba(255, 255, 255, 0.4));
+    }
+
+    @keyframes windBlow {
+      0% {
+        opacity: 0.9;
+        transform: translate(0, 0) scale(0.6);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(var(--wdir, -1) * 65px), -14px) scale(1.4);
+      }
     }
 
     .hen-perch .hen {
@@ -2162,6 +2219,56 @@
           <div class="wattle"></div>
           <div class="eye"></div>
           <div class="beak"></div>
+        </div>
+        <!-- Wind speed streaks trailing behind the spear -->
+        <div class="spear-wind-streaks" id="spearWind">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <!-- Spear shaped stick that hen rides on while moving & dropping eggs -->
+        <div class="spear-perch">
+          <svg width="170" height="24" viewBox="0 0 170 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="spearBlade" x1="128" y1="2" x2="168" y2="22" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="35%" stop-color="#cbd5e1" />
+                <stop offset="70%" stop-color="#94a3b8" />
+                <stop offset="100%" stop-color="#475569" />
+              </linearGradient>
+              <linearGradient id="spearShaft" x1="10" y1="9" x2="130" y2="15" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#451a03" />
+                <stop offset="50%" stop-color="#78350f" />
+                <stop offset="100%" stop-color="#381a04" />
+              </linearGradient>
+              <linearGradient id="goldCollar" x1="124" y1="8" x2="132" y2="16" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#fde047" />
+                <stop offset="100%" stop-color="#b45309" />
+              </linearGradient>
+            </defs>
+            <!-- Spear rear counterweight spike / butt cap -->
+            <polygon points="6,12 12,8 12,16" fill="#64748b" stroke="#334155" stroke-width="1" />
+            <circle cx="5" cy="12" r="2" fill="#94a3b8" />
+
+            <!-- Main wood spear shaft -->
+            <rect x="12" y="9.5" width="118" height="5" rx="2" fill="url(#spearShaft)" stroke="#271103" stroke-width="0.8" />
+
+            <!-- Brass binding rings on shaft -->
+            <rect x="44" y="9" width="4" height="6" fill="#d97706" rx="1" />
+            <rect x="88" y="9" width="4" height="6" fill="#d97706" rx="1" />
+
+            <!-- Gold socket collar -->
+            <rect x="126" y="8" width="7" height="8" rx="1.5" fill="url(#goldCollar)" stroke="#78350f" stroke-width="0.8" />
+
+            <!-- Sharp gleaming spearhead blade (points forward) -->
+            <path d="M 133 12 Q 146 4 168 12 Z" fill="url(#spearBlade)" stroke="#334155" stroke-width="0.8" />
+            <path d="M 133 12 Q 146 20 168 12 Z" fill="#64748b" stroke="#334155" stroke-width="0.8" />
+            <line x1="133" y1="12" x2="167" y2="12" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" />
+
+            <!-- Crimson fluttering streamer tassel -->
+            <path d="M 129 16 Q 123 23 116 21 Q 121 18 129 16 Z" fill="#ef4444" />
+            <path d="M 130 16 Q 125 24 120 23" stroke="#f43f5e" stroke-width="1.2" stroke-linecap="round" />
+          </svg>
         </div>
       </div>
       <div class="basket" id="basket">
@@ -3158,6 +3265,21 @@
         updateBasketPos(e.clientX);
       });
 
+      let windGustCounter = 0;
+
+      function spawnWindGust(x, y, dir) {
+        if (!gameRunning) return;
+        const w = document.createElement('div');
+        w.className = 'wind-gust';
+        const icons = ['💨', '彡', '〰️', '💨'];
+        w.textContent = icons[Math.floor(Math.random() * icons.length)];
+        w.style.left = (x - dir * 28) + 'px';
+        w.style.top = (y + Math.random() * 20 - 8) + 'px';
+        w.style.setProperty('--wdir', -dir);
+        field.appendChild(w);
+        setTimeout(() => w.remove(), 600);
+      }
+
       function spawnEgg() {
         if (dropped >= MAX_EGGS || !gameRunning) {
           clearInterval(spawnTimer);
@@ -3172,19 +3294,22 @@
         }
 
         const r = fieldRect();
+        const startX = Math.max(30, Math.min(r.width - 30, henX));
+
+        // Gust of wind when dropping egg
+        spawnWindGust(startX, 68, henDir);
+        spawnWindGust(startX - henDir * 20, 82, henDir);
+
         const egg = document.createElement('div');
         egg.className = 'egg';
         egg.textContent = '🥚';
-
-        // Moving kozhi-yude adiyil ninnu mutta veezhikkuka
-        const startX = Math.max(30, Math.min(r.width - 30, henX));
         egg.style.left = startX + 'px';
         egg.style.top = '52px';
         field.appendChild(egg);
 
-        // Aadyam kurachu aaswasam tharum, pinne ittu varuthum
-        const baseSpeed = dropped === 0 ? 0.9 : Math.min(1.0 + (dropped * 0.08), 1.6);
-        const eggSpeed = baseSpeed + Math.random() * 0.25;
+        // Increased egg falling speed
+        const baseSpeed = dropped === 0 ? 1.4 : Math.min(1.45 + (dropped * 0.1), 2.35);
+        const eggSpeed = baseSpeed + Math.random() * 0.3;
         eggs.push({ el: egg, x: startX, y: 52, speed: eggSpeed, settled: false });
         dropped++;
         countDroppedEl.textContent = dropped;
@@ -3278,6 +3403,11 @@
           henPauseTimer -= delta;
         } else {
           henX += henSpeed * henDir * delta;
+          windGustCounter += delta;
+          if (windGustCounter >= 11) {
+            windGustCounter = 0;
+            spawnWindGust(henX, 76, henDir);
+          }
           if (henX >= maxHenX) {
             henX = maxHenX;
             henDir = -1;
@@ -3354,7 +3484,8 @@
         countDroppedEl.textContent = 0;
         countCrackedEl.textContent = 0;
         loseOverlay.classList.remove('show');
-        field.querySelectorAll('.egg, .crack-msg, .splat').forEach(n => n.remove());
+        field.querySelectorAll('.egg, .crack-msg, .splat, .wind-gust').forEach(n => n.remove());
+        windGustCounter = 0;
         basketTilt = 0;
         updateBasketPos(fieldRect().left + fieldRect().width / 2);
 
@@ -3385,6 +3516,7 @@
         clearTimeout(spawnDelayTimeout);
         cancelAnimationFrame(rafId);
         lastTime = 0;
+        field.querySelectorAll('.wind-gust').forEach(n => n.remove());
       }
 
       playAgainBtn.addEventListener('click', () => {
