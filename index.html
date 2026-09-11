@@ -231,16 +231,19 @@
 
     .hen-speech {
       position: absolute;
-      top: -36px;
+      top: -46px;
       background: #ffffff;
       color: #1e1233;
-      padding: 6px 14px;
-      border-radius: 16px;
-      font-size: 13px;
+      padding: 8px 18px;
+      border-radius: 18px;
+      font-size: 15.5px;
       font-weight: 800;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
-      border: 2px solid var(--yolk-bright);
-      white-space: nowrap;
+      line-height: 1.35;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+      border: 2.2px solid var(--yolk-bright);
+      max-width: min(88vw, 360px);
+      text-align: center;
+      white-space: normal;
       pointer-events: none;
       opacity: 0;
       transform: translateY(6px) scale(0.85);
@@ -979,17 +982,17 @@
 
     .btn-taunt {
       position: absolute;
-      top: -30px;
+      top: -34px;
       left: 50%;
       transform: translateX(-50%) scale(0);
       background: #ffffff;
       color: #dc2626;
-      font-size: 11.5px;
+      font-size: 13.5px;
       font-weight: 800;
-      padding: 3px 10px;
-      border-radius: 12px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-      border: 1.5px solid #dc2626;
+      padding: 4px 12px;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+      border: 1.8px solid #dc2626;
       white-space: nowrap;
       pointer-events: none;
       opacity: 0;
@@ -1051,12 +1054,12 @@
     }
 
     .toast {
-      min-height: 22px;
-      font-size: 14px;
+      min-height: 26px;
+      font-size: 16.5px;
       color: var(--text-gold);
-      font-weight: 700;
+      font-weight: 800;
       text-align: center;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
 
     /* Pro Tip Glass Sticky Note */
@@ -1280,34 +1283,146 @@
       }
     }
 
-    /* Peeking Barn Cat */
+    /* Peeking Barn Cat (Roams All Edges of Full Screen!) */
     .peeking-cat {
       position: fixed;
-      bottom: -4px;
-      right: 18px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transform: translateY(115%);
-      transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
       cursor: pointer;
-      z-index: 50;
+      z-index: 99;
       user-select: none;
+      filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
     }
 
-    .peeking-cat.peek {
+    /* Spot 1: Bottom Right (default) */
+    .peeking-cat.spot-br {
+      bottom: -4px;
+      right: 24px;
+      left: auto;
+      top: auto;
+      flex-direction: column;
+      transform: translateY(118%);
+    }
+    .peeking-cat.spot-br.peek {
       transform: translateY(0);
+    }
+
+    /* Spot 2: Bottom Left */
+    .peeking-cat.spot-bl {
+      bottom: -4px;
+      left: 24px;
+      right: auto;
+      top: auto;
+      flex-direction: column;
+      transform: translateY(118%);
+    }
+    .peeking-cat.spot-bl.peek {
+      transform: translateY(0);
+    }
+
+    /* Spot 3: Bottom Center */
+    .peeking-cat.spot-bc {
+      bottom: -4px;
+      left: 50%;
+      right: auto;
+      top: auto;
+      flex-direction: column;
+      transform: translate(-50%, 118%);
+    }
+    .peeking-cat.spot-bc.peek {
+      transform: translate(-50%, 0);
+    }
+
+    /* Spot 4: Left Edge (peeking horizontally) */
+    .peeking-cat.spot-left {
+      top: 48%;
+      left: -4px;
+      bottom: auto;
+      right: auto;
+      flex-direction: row-reverse;
+      transform: translateX(-118%);
+    }
+    .peeking-cat.spot-left.peek {
+      transform: translateX(0);
+    }
+    .peeking-cat.spot-left .cat-sign {
+      margin-bottom: 0;
+      margin-left: 8px;
+    }
+    .peeking-cat.spot-left .cat-sign::after {
+      bottom: auto;
+      left: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 6px 6px 6px 0;
+      border-color: transparent var(--yolk) transparent transparent;
+    }
+
+    /* Spot 5: Right Edge (peeking horizontally) */
+    .peeking-cat.spot-right {
+      top: 48%;
+      right: -4px;
+      bottom: auto;
+      left: auto;
+      flex-direction: row;
+      transform: translateX(118%);
+    }
+    .peeking-cat.spot-right.peek {
+      transform: translateX(0);
+    }
+    .peeking-cat.spot-right .cat-sign {
+      margin-bottom: 0;
+      margin-right: 8px;
+    }
+    .peeking-cat.spot-right .cat-sign::after {
+      bottom: auto;
+      right: -6px;
+      left: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 6px 0 6px 6px;
+      border-color: transparent transparent transparent var(--yolk);
+    }
+
+    /* Spot 6: Top Edge (hanging upside-down) */
+    .peeking-cat.spot-top {
+      top: -4px;
+      left: 50%;
+      bottom: auto;
+      right: auto;
+      flex-direction: column-reverse;
+      transform: translate(-50%, -118%);
+    }
+    .peeking-cat.spot-top.peek {
+      transform: translate(-50%, 0);
+    }
+    .peeking-cat.spot-top .cat-face {
+      transform: rotate(180deg);
+    }
+    .peeking-cat.spot-top .cat-sign {
+      margin-bottom: 0;
+      margin-top: 5px;
+    }
+    .peeking-cat.spot-top .cat-sign::after {
+      bottom: auto;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 0 6px 6px 6px;
+      border-color: transparent transparent var(--yolk) transparent;
     }
 
     .cat-sign {
       background: #fffaf0;
       border: 2px solid var(--yolk);
-      border-radius: 10px;
-      padding: 4px 10px;
-      font-size: 11px;
+      border-radius: 12px;
+      padding: 5px 13px;
+      font-size: 13.5px;
       font-weight: 800;
       color: #78350f;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
       white-space: nowrap;
       margin-bottom: 2px;
       position: relative;
@@ -1325,14 +1440,14 @@
     }
 
     .cat-face {
-      font-size: 38px;
+      font-size: 42px;
       line-height: 1;
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
       transition: transform 0.2s;
     }
 
     .peeking-cat:hover .cat-face {
-      transform: scale(1.1) rotate(6deg);
+      transform: scale(1.15) rotate(6deg);
     }
 
     .miss-pop {
@@ -1689,15 +1804,15 @@
 
     .crack-msg {
       position: absolute;
-      font-size: 12.5px;
+      font-size: 14.5px;
       font-weight: 800;
       color: #ffffff;
-      background: rgba(26, 17, 44, 0.92);
-      border: 1.5px solid var(--yolk);
-      padding: 4px 10px;
-      border-radius: 12px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-      animation: floatUp 1s ease forwards;
+      background: rgba(26, 17, 44, 0.94);
+      border: 1.8px solid var(--yolk);
+      padding: 5px 13px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+      animation: floatUp 1.3s ease forwards;
       pointer-events: none;
       white-space: nowrap;
       z-index: 30;
@@ -1990,9 +2105,9 @@
 
     <button id="giveUpBtn" class="give-up-btn">🏳️ Enne kondu aavoolla (Surrender)</button>
 
-    <!-- Peeking Barn Cat -->
-    <div class="peeking-cat" id="peekingCat" title="Poocheye thottal thazhe pokum!">
-      <div class="cat-sign" id="catSign">Thottu thopiyaayo? 😂</div>
+    <!-- Peeking Barn Cat (Roams All Screen Edges!) -->
+    <div class="peeking-cat spot-br" id="peekingCat" title="Poocheye thottal thazhe pokum!">
+      <div class="cat-sign" id="catSign">Thottu thopiyetto? 😂</div>
       <div class="cat-face">😼</div>
     </div>
   </div>
@@ -2460,12 +2575,19 @@
       ];
 
       const catQuotes = [
-        "Thottu thopiyaayo? 😂",
+        "Thottu thopiyetto? 😂",
         "Kozhi 1 - Nee 0 🤡",
+        "Ivideyum njan undeda! 👀😹",
+        "Screen-inte ella side-ilum njan undu! 🚩",
+        "Full-screen surveillance aanu mwone! 🐾🕵️",
+        "Left-il nokkiyappo njan right-il vannu! 💨",
+        "Upside-down aayi nokkiyaalum tholvi thanne! 🙃",
         "Kaiyile viral theerumo? 💅",
         "Meow... paavam thonnanu! 😿",
         "Button odunnath kando? 🏃💨",
-        "Njan kandu... miss aayathu! 😹"
+        "Chiri thudangiye ullu pillecha! 🍿😹",
+        "Njan kandu... ninte miss aayathu! 😹",
+        "Screen muzhuvan njan nadakkum! 🐾💃"
       ];
 
       function setToast(text) {
@@ -2486,7 +2608,7 @@
         clearTimeout(tauntTimer);
         tauntTimer = setTimeout(() => {
           if (btnTaunt) btnTaunt.classList.remove('show');
-        }, 650);
+        }, 1400);
       }
 
       function updateRage() {
@@ -2564,7 +2686,7 @@
           clearTimeout(speechTimer);
           speechTimer = setTimeout(() => {
             if (henSpeech) henSpeech.classList.remove('show');
-          }, 2200);
+          }, 5000);
         }
 
         const clientX = e ? e.clientX : window.innerWidth / 2;
@@ -2720,7 +2842,7 @@
           clearTimeout(speechTimer);
           speechTimer = setTimeout(() => {
             if (henSpeech) henSpeech.classList.remove('show');
-          }, 2600);
+          }, 5200);
         }
       }
 
@@ -2773,16 +2895,31 @@
       }
       setupClouds();
 
-      /* ---------------- PEEKING BARN CAT ---------------- */
+      /* ---------------- PEEKING BARN CAT (FULL-SCREEN ROAMING) ---------------- */
+      const catSpots = ['spot-br', 'spot-bl', 'spot-bc', 'spot-left', 'spot-right', 'spot-top'];
+      let lastCatSpot = 'spot-br';
+
       function triggerCatPeek() {
         if (!peekingCat) return;
         const introEl = document.getElementById('intro');
         if (introEl && introEl.classList.contains('hidden')) return;
-        if (catSign) catSign.textContent = catQuotes[Math.floor(Math.random() * catQuotes.length)];
+
+        // Choose a different spot each time to roam around the full screen!
+        const availSpots = catSpots.filter(s => s !== lastCatSpot);
+        const nextSpot = availSpots[Math.floor(Math.random() * availSpots.length)];
+        lastCatSpot = nextSpot;
+
+        catSpots.forEach(s => peekingCat.classList.remove(s));
+        peekingCat.classList.add(nextSpot);
+
+        if (catSign) {
+          catSign.textContent = catQuotes[Math.floor(Math.random() * catQuotes.length)];
+        }
+
         peekingCat.classList.add('peek');
         setTimeout(() => {
           if (peekingCat) peekingCat.classList.remove('peek');
-        }, 4500);
+        }, 5800);
       }
 
       if (peekingCat) {
@@ -2790,15 +2927,15 @@
           e.stopPropagation();
           getCtx();
           playSqueak();
-          if (catSign) catSign.textContent = "Ayyada pedichu! 💨";
+          if (catSign) catSign.textContent = "Ayyada pedichu paanju! 💨";
           setTimeout(() => {
             peekingCat.classList.remove('peek');
-          }, 350);
+          }, 450);
         });
         setInterval(() => {
-          if (Math.random() < 0.75) triggerCatPeek();
-        }, 11000);
-        setTimeout(triggerCatPeek, 3200);
+          if (Math.random() < 0.85) triggerCatPeek();
+        }, 8500);
+        setTimeout(triggerCatPeek, 2400);
       }
 
       /* ---------------- CURSOR EYE TRACKING & BUTTON PANIC ---------------- */
