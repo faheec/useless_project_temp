@@ -167,15 +167,6 @@ flowchart TD
 ```
 *Figure 4: Complete state machine & emotional journey of an Ippa Kittum player.*
 
-For Hardware:
-
-# Schematic & Circuit
-*Not Applicable — This is a pure web software project.*  
-*(The only electrical circuits involved are the microchips inside your CPU sweating while computing unwinnable physics).*
-
-# Build Photos
-*Not Applicable — Pure digital artifact with 0 physical hardware components.*  
-*(All builds occur instantaneously in the browser DOM).*
 
 ### Project Demo
 # Video
@@ -184,7 +175,7 @@ For Hardware:
 
 ### Additional Links
 - **Source Code Repository**: [https://github.com/faheec/useless_project_temp](https://github.com/faheec/useless_project_temp)
-- **Live Local Preview**: Open `index.html` directly in your browser.
+-[Live View](https://faheec.github.io/useless_project_temp/)
 
 ---
 
