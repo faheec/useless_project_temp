@@ -3550,6 +3550,20 @@
         if (basket) basket.style.transform = 'translateX(-50%) rotate(0deg)';
       });
 
+      // Preview anchors for screenshots and judging review
+      if (window.location.hash === '#preview-game') {
+        document.getElementById('intro').classList.add('hidden');
+        document.getElementById('game').classList.remove('hidden');
+        startGame();
+      } else if (window.location.hash === '#preview-lose') {
+        document.getElementById('intro').classList.add('hidden');
+        document.getElementById('game').classList.remove('hidden');
+        loseOverlay.classList.add('show');
+        finalCrackedEl.textContent = '10';
+        countCrackedEl.textContent = '10';
+        countDroppedEl.textContent = '10';
+      }
+
     })();
   </script>
 </body>
