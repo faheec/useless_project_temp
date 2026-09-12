@@ -132,9 +132,20 @@ For judging review and rapid testing, you can jump directly into specific screen
 
 ---
 
-## Project Documentation
+### Project Documentation
+For Software:
 
-### Architecture & Player Journey Flowchart
+# Screenshots (Add at least 3)
+![Start Screen](/landing.png)
+*Figure 1: The Golden Hour Arcade Start Screen with character customization (Thorthu, Sunglasses, Gold Chain, Cowboy Hat, Alien Antennas, Royal Crown).*
+
+![Gameplay Action](/egg.png)
+*Figure 2: High-speed gameplay showing the aerodynamic spear perch, falling egg physics, wind particles, and the Potta Bucket with hazard tape.*
+
+![Game Over Troll](/fail.png)
+*Figure 3: The inevitable 9/10 betrayal: the egg falls through the bucket blowout hole, triggering the 'THOTTU THOPIYETTU! 🤡' screen and the roving spy cat.*
+
+# Diagrams
 ```mermaid
 flowchart TD
     Start([User clicks ▶ NJEKKIKKO]) --> ChooseCosmetic[Equip Kozhi Cosmetics: Thorthu / Sunglasses / Crown]
