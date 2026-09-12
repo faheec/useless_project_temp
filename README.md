@@ -170,8 +170,8 @@ flowchart TD
 
 ### Project Demo
 # Video
-[Demo Video Link](https://github.com/faheec/useless_project_temp) *(Replace with your YouTube/Drive demo video link once recorded)*  
-*Demonstrates the googly-eyed runaway start button, cosmetic wardrobe switching, corn feeding minigame, fortune egg cracking, 6-zone cat surveillance, spear perch wind animations, bucket tilt inertia, and the inevitable 10/10 Potta bucket blowout betrayal.*
+[Demo Video Link](https://drive.google.com/file/d/1XeTaOj8DvCTmN-MKPPL7eMYC7PLLU2gA/view?usp=sharing)  
+
 
 ### Additional Links
 - **Source Code Repository**: [https://github.com/faheec/useless_project_temp](https://github.com/faheec/useless_project_temp)
